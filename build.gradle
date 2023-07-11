@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.3'
+    testImplementation 'junit:junit:4.13.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.3'
+    testImplementation 'io.rest-assured:rest-assured:4.4.0'
+    testImplementation 'com.fasterxml.jackson.core:jackson-databind:2.13.2'
+    testImplementation 'junit:junit:4.12'
+    implementation 'org.json:json:20210307'
+    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+    implementation 'com.google.code.gson:gson:2.8.8'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.4'
+    implementation 'org.slf4j:slf4j-api:2.0.7'
+    testImplementation 'org.slf4j:slf4j-log4j12:2.0.7'
+    testImplementation 'org.slf4j:slf4j-simple:2.0.7'
+
+    testImplementation 'org.aspectj:aspectjweaver:1.9.5'
+}
+
+def positiveTests = tasks.register("positiveTests", Test) {
+    useJUnitPlatform {
+        includeTags "Positive"
+    }
+}
+
+def negativeTests = tasks.register("negativeTests", Test) {
+    useJUnitPlatform {
+        includeTags "Negative"
+    }
+}
